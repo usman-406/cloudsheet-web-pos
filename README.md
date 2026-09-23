@@ -80,9 +80,4 @@ https://github.com/usman-406/cloudsheet-web-pos
 
 ---
 
-## Attendance Summary
-
-| Week | Days Present |
-|---|---|---|
-| 1-9 | 5 each week | 
 
