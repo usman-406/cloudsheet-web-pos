@@ -17,7 +17,7 @@ export interface MongoConnectionTestResult {
   advice?: string;
 }
 
-export const ATLAS_CLUSTER_URI = 'mongodb+srv://bloomandcarrypk_db_user:ZihlEXQqFfMOXU2q@cluster0.p35gouf.mongodb.net/bloomandcarry_pos_real?appName=Cluster0&retryWrites=true&w=majority';
+export const ATLAS_CLUSTER_URI = 'api';
 
 export const DEFAULT_MONGO_CONFIG: MongoDbConfig = {
   enabled: true,
