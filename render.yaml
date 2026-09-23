@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: bloom-and-carry-backend
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_DATABASE
+        value: bloomandcarry_pos_real
+      - key: MONGODB_URI
+        sync: false

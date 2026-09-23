@@ -1,0 +1,6 @@
+{
+  "name": "BoomandCarry Cosmetics POS",
+  "description": "Complete POS Billing, Inventory, Barcode, Thermal Receipt, Import/Export and Hardware Management System for BoomandCarry Cosmetics & Beauty Shop",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

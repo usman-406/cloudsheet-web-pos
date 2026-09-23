@@ -1,0 +1,17 @@
+{
+  "printer_name": "POS-80 Thermal Printer",
+  "printer_connection": "usb",
+  "printer_port": "USB (POS-80 / 80mm Thermal)",
+  "paper_width": "80mm",
+  "printer_ip": "192.168.1.200",
+  "baud_rate": 9600,
+  "scanner_port": "COM3 / USB-HID",
+  "scanner_mode": "keyboard_wedge",
+  "cash_drawer_command": "27,112,0,25,250",
+  "card_terminal_enabled": true,
+  "card_terminal_ip": "192.168.1.210",
+  "card_terminal_port": 8080,
+  "scale_enabled": true,
+  "scale_port": "COM4",
+  "auto_weight_read": false
+}

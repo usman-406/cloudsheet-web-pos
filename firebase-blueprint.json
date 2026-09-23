@@ -1,0 +1,134 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Cosmetics and beauty product inventory item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "barcode": { "type": "string", "maxLength": 64 },
+        "name": { "type": "string", "maxLength": 256 },
+        "category": { "type": "string", "maxLength": 128 },
+        "brand": { "type": "string", "maxLength": 128 },
+        "buy_price": { "type": "number" },
+        "sell_price": { "type": "number" },
+        "stock_qty": { "type": "number" },
+        "min_stock_alert": { "type": "number" },
+        "image_url": { "type": "string", "maxLength": 1024 },
+        "tax_rate": { "type": "number" },
+        "is_tax_exempt": { "type": "boolean" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "barcode", "name", "category", "buy_price", "sell_price", "stock_qty"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "Completed POS checkout transaction and invoice",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "invoice_no": { "type": "string", "maxLength": 64 },
+        "datetime": { "type": "string" },
+        "customer_name": { "type": "string", "maxLength": 128 },
+        "customer_phone": { "type": "string", "maxLength": 32 },
+        "subtotal": { "type": "number" },
+        "discount_amount": { "type": "number" },
+        "tax_amount": { "type": "number" },
+        "total": { "type": "number" },
+        "payment_method": { "type": "string", "maxLength": 64 },
+        "cashier_name": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["id", "invoice_no", "datetime", "total", "payment_method", "cashier_name"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "Registered retail customer and loyalty profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "maxLength": 128 },
+        "phone": { "type": "string", "maxLength": 32 },
+        "email": { "type": "string", "maxLength": 128 },
+        "loyalty_points": { "type": "number" },
+        "total_spent": { "type": "number" }
+      },
+      "required": ["id", "name", "phone"]
+    },
+    "ShopSettings": {
+      "title": "ShopSettings",
+      "description": "General store configuration and receipt headers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 64 },
+        "shopName": { "type": "string", "maxLength": 256 },
+        "tagline": { "type": "string", "maxLength": 256 },
+        "address": { "type": "string", "maxLength": 512 },
+        "phone": { "type": "string", "maxLength": 64 },
+        "currencySymbol": { "type": "string", "maxLength": 16 },
+        "taxRate": { "type": "number" }
+      },
+      "required": ["id", "shopName", "currencySymbol"]
+    },
+    "BackupSnapshot": {
+      "title": "BackupSnapshot",
+      "description": "Full system backup snapshot archive",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "timestamp": { "type": "string" },
+        "version": { "type": "string" },
+        "created_by": { "type": "string" },
+        "products_count": { "type": "number" },
+        "sales_count": { "type": "number" },
+        "customers_count": { "type": "number" },
+        "expenses_count": { "type": "number" },
+        "payload_json": { "type": "string" }
+      },
+      "required": ["id", "timestamp", "version", "payload_json"]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Product catalog category and inventory classification",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "maxLength": 128 },
+        "code": { "type": "string", "maxLength": 64 },
+        "description": { "type": "string", "maxLength": 512 },
+        "color": { "type": "string", "maxLength": 64 },
+        "icon": { "type": "string", "maxLength": 64 },
+        "status": { "type": "string", "enum": ["ACTIVE", "INACTIVE"] },
+        "display_order": { "type": "number" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "status"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Collection of inventory items"
+    },
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Collection of product categories"
+    },
+    "/sales/{saleId}": {
+      "schema": "Sale",
+      "description": "Collection of completed sales"
+    },
+    "/customers/{customerId}": {
+      "schema": "Customer",
+      "description": "Collection of customer records"
+    },
+    "/settings/{settingId}": {
+      "schema": "ShopSettings",
+      "description": "Store configuration and setup"
+    },
+    "/backups/{backupId}": {
+      "schema": "BackupSnapshot",
+      "description": "Full system disaster recovery backups"
+    }
+  }
+}
